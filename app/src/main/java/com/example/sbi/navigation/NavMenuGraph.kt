@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.sbi.SBI.Companion.windowWidth
 import com.example.sbi.ui.theme.Active
 import com.example.sbi.ui.theme.BackgroundColor
 import com.example.sbi.ui.theme.BorderColorOneWay
@@ -38,6 +37,7 @@ import com.example.sbi.utils.MenuHeight
 import com.example.sbi.utils.MenuItemWidth
 import com.example.sbi.utils.SettingHeight
 import com.example.sbi.utils.SettingItemWidth
+import com.example.sbi.utils.windowWidth
 
 @Composable
 fun BottomMenuGraph(

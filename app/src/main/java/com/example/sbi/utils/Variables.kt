@@ -3,10 +3,14 @@ package com.example.sbi.utils
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.sbi.SBI
 
-var typeOfScreen = ""
+var typeOfScreen = DisplaySize.Large
+var orientationOfScreen = DisplayOrientation.Landscape.name
+var windowWidth = 0.dp
+var windowHeight = 0.dp
+
 
 //Top Bar Setting
 var TopBarHeight = 0.dp
@@ -21,10 +25,26 @@ var MenuHeight = 0.dp
 var MenuItemWidth = 0.dp
 
 @Composable
-fun getDeviceType() {
+fun getDeviceType(maxWidth: Dp, maxHeight: Dp, orientation: Int) {
+
+        windowWidth=maxWidth
+        windowHeight=maxHeight
+        // When orientation is Landscape
+
+    orientationOfScreen = when (orientation) {
+        2 -> {
+            DisplayOrientation.Landscape.name
+
+        }
+        // Portrait
+        else -> {
+            DisplayOrientation.Portrait.name
+        }
+    }
+
     when {
-        SBI.windowWidth < 600.dp -> {
-            typeOfScreen = "Small"
+        maxWidth < 600.dp -> {
+            typeOfScreen = DisplaySize.Compact
             //Top Bar Setting
             TopBarHeight = 40.dp
             TopBarFontStyle = MaterialTheme.typography.labelSmall
@@ -39,8 +59,8 @@ fun getDeviceType() {
 
         }
 
-        SBI.windowWidth < 840.dp -> {
-            typeOfScreen = "Medium"
+        maxWidth < 840.dp -> {
+            typeOfScreen = DisplaySize.Medium
             //Top Bar Setting
             TopBarHeight = 35.dp
             TopBarFontStyle = MaterialTheme.typography.labelMedium
@@ -55,7 +75,7 @@ fun getDeviceType() {
         }
 
         else -> {
-            typeOfScreen = "Large"
+            typeOfScreen = DisplaySize.Large
             //Top Bar Setting
             TopBarHeight = 50.dp
             TopBarFontStyle = MaterialTheme.typography.labelLarge

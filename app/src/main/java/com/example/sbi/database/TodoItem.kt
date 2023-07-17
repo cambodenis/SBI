@@ -12,33 +12,33 @@ data class DeviceItem(
     var deviceId: Int?,
 
     @ColumnInfo(name = "device_gate_address")
-    val deviceGateAddress: Double,
+    var deviceGateAddress: Int,
 
     @ColumnInfo(name = "device_address")
-    val deviceAddress: Double,
+    var deviceAddress: Int,
 
     @ColumnInfo(name = "device_name")
-    val deviceName: String,
+    var deviceName: String,
 
     //Card, Button, Widget
 
     @ColumnInfo(name = "device_type")
-    val deviceType: String,
+    var deviceType: String,
 
     @ColumnInfo(name = "device_data")
     val deviceData: Double,
 
     @ColumnInfo(name = "device_data_max")
-    val deviceDataMax: Double,
+    var deviceDataMax: Double,
 
     @ColumnInfo(name = "device_data_min")
-    val deviceDataMin: Double,
+    var deviceDataMin: Double,
 
     @ColumnInfo(name = "device_data_units")
-    val deviceDataUnits: String,
+    var deviceDataUnits: String,
 
     @ColumnInfo(name = "device_color_icon")
-    val deviceColorIcon: Int,
+    var deviceColorIcon: Int,
 
     @ColumnInfo(name = "device_color_indicator")
     val deviceColorIndicator: Int,
@@ -50,5 +50,5 @@ data class DeviceItem(
     var deviceIcon: String,
 
     @ColumnInfo(name = "deviceTopBar")
-    val deviceTopBar: Boolean
+    var deviceTopBar: Boolean
 )

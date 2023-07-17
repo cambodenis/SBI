@@ -2,18 +2,18 @@ package com.example.sbi.database
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class DeviceViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: DeviceRepository
 
-    val readAllData: LiveData<List<DeviceItem>>
+    val readAllData: Flow<List<DeviceItem>>
 
     init {
         val deviceDao = DeviceDatabase.getInstance(application).deviceDao()
@@ -21,27 +21,21 @@ class DeviceViewModel(application: Application) : AndroidViewModel(application) 
         readAllData = repository.readAllData
     }
 
-    fun getListDevice(deviceType: String): LiveData<List<DeviceItem>> {
+    fun getListDevice(deviceType: String): Flow<List<DeviceItem>> {
         return repository.getListDevice(deviceType)
     }
 
-    fun getDeviceById(id: Int): LiveData<List<DeviceItem>> {
+    fun getDeviceById(id: Int): Flow<List<DeviceItem>> {
         return repository.getDeviceById(id)
     }
 
-    fun getDeviceTopBarIcon(topBar: Boolean): LiveData<List<DeviceItem>> {
+    fun getDeviceTopBarIcon(topBar: Boolean): Flow<List<DeviceItem>> {
         return repository.getTopBarIcon(topBar)
     }
 
-    fun addDevice(deviceItem: DeviceItem) {
+    fun insert(deviceItem: DeviceItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addDevice(deviceItem)
-        }
-    }
-
-    fun updateDevice(deviceItem: DeviceItem) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateDevice(deviceItem = deviceItem)
+            repository.insert(deviceItem)
         }
     }
 

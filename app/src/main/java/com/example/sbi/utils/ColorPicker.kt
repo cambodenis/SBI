@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.width
@@ -18,6 +19,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,7 +29,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.sbi.R
 import com.example.sbi.ui.theme.BackgroundColor
 import com.example.sbi.ui.theme.White
@@ -41,9 +47,8 @@ fun ColorPicker(
     onDismissRequest: () -> Unit, // Cancel Request
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = Modifier.fillMaxWidth(0.5f).fillMaxHeight().border(1.dp, White).background(BackgroundColor).padding(20.dp)) {
         FlowRow(
-
         ) {
             colors.distinct().forEach { color ->
                 ColorItem(
@@ -52,6 +57,15 @@ fun ColorPicker(
                     onClick = { onColorSelected(color) }
                 )
             }
+        }
+        OutlinedButton(onClick = {
+            onDismissRequest()
+        }, modifier = Modifier.padding(10.dp))
+        {
+            Text(text = stringResource(R.string.Save), style = TextStyle(
+                color = White, fontSize = 15.sp
+            )
+            )
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.example.sbi.navigation
 
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import com.example.sbi.R
 
 
@@ -58,15 +56,27 @@ object SettingsDevices : BottomNavDestination {
 }
 
 object SettingsDevice : BottomNavDestination {
-    // Added for simplicity, this icon will not in fact be used, as Settings isn't
+    override val icon = R.drawable.menu_utilites
+    override val route = "Device"
+    override val label = R.string.menu_devices
+}
+/*
+object SettingsDevice : BottomNavDestination {
+    // Added for simplicity, this icon will not in fact be used, as SingleAccount isn't
     // part of the RallyTabRow selection
     override val icon = R.drawable.menu_settings
     override val route = "Device"
     override val label = R.string.menu_settings
-    const val deviceId = "-1"
-    val routeWithArgs = "$route/{$deviceId}"
-    val arguments = listOf(navArgument(deviceId) { type = NavType.StringType })
+    const val idArg = 1
+    val routeWithArgs = "$route/{$idArg}"
+    val arguments = listOf(
+        navArgument(idArg) { type = NavType.IntType
+            nullable = true
+            defaultValue = null }
+    )
 }
+
+ */
 
 // Screens to be displayed in the bottom menu bar
 val AllScreens= listOf(

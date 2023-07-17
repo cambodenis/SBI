@@ -1,4 +1,4 @@
-package com.example.sbi.screens.main
+package com.example.sbi.screens
 
 import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +14,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,6 +36,7 @@ import com.example.sbi.ui.theme.BorderSize
 import com.example.sbi.ui.theme.White
 import com.example.sbi.utils.AsyncImage
 import com.example.sbi.utils.ClockText
+import com.example.sbi.utils.DisplaySize
 import com.example.sbi.utils.TopBarFontStyle
 import com.example.sbi.utils.TopBarHeight
 import com.example.sbi.utils.typeOfScreen
@@ -46,7 +47,7 @@ fun topAppBar() {
     val context = LocalContext.current
     val mDeviceViewModel: DeviceViewModel =
         viewModel(factory = DeviceViewModelFactory(context.applicationContext as Application))
-    val topBarIcon = mDeviceViewModel.getDeviceTopBarIcon(true).observeAsState(listOf()).value
+             val topBarIcon = mDeviceViewModel.getDeviceTopBarIcon(true).collectAsState(listOf()).value
 
 
     Row(
@@ -64,7 +65,7 @@ fun topAppBar() {
                 )
             }.padding(5.dp),
     ) {
-        if (typeOfScreen != "Small") topBarWeather()
+        if (typeOfScreen != DisplaySize.Compact) topBarWeather()
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -74,12 +75,23 @@ fun topAppBar() {
         )
         {
 
-            topBarIcon.forEach { item ->
-                // var deviceColorIcon by remember { mutableStateOf(Color(item.deviceColorIcon)) }
-                var deviceColorIcon by remember { mutableStateOf(White) }
-                var deviceColorIndicator by remember { mutableStateOf(Color(item.deviceColorIndicator)) }
-                var deviceColorAlarm by remember { mutableStateOf(Color(item.deviceColorAlarm)) }
-                var deviceIcon by remember { mutableStateOf(item.deviceIcon) }
+
+            topBarIcon.forEach { deviceItem ->
+
+                var deviceGateAddress by remember { mutableStateOf(deviceItem.deviceGateAddress) }
+                var deviceAddress by remember { mutableStateOf(deviceItem.deviceAddress) }
+                var deviceName by remember { mutableStateOf(deviceItem.deviceName) }
+                var deviceType by remember { mutableStateOf(deviceItem.deviceType.toInt()) }
+                val deviceData by remember { mutableStateOf(65.00) }
+                var deviceDataMax by remember { mutableStateOf(deviceItem.deviceDataMax) }
+                var deviceDataMin by remember { mutableStateOf(deviceItem.deviceDataMin) }
+                var deviceDataUnits by remember { mutableStateOf(deviceItem.deviceDataUnits) }
+                var deviceColorIcon by remember { mutableStateOf(Color(deviceItem.deviceColorIcon)) }
+                var deviceColorIndicator by remember { mutableStateOf(Color(deviceItem.deviceColorIndicator)) }
+                var deviceColorAlarm by remember { mutableStateOf(Color(deviceItem.deviceColorAlarm)) }
+                var deviceIcon by remember { mutableStateOf(deviceItem.deviceIcon) }
+                var deviceTopBar by remember { mutableStateOf(deviceItem.deviceTopBar) }
+
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -94,6 +106,8 @@ fun topAppBar() {
             }
 
 
+
+
         }
         AsyncImage("file:///android_asset/weatherIcon/sun.svg", White, 1f)
         AsyncImage("file:///android_asset/weatherIcon/sun.svg", White, 1f)
@@ -104,7 +118,7 @@ fun topAppBar() {
         AsyncImage("file:///android_asset/weatherIcon/sun.svg", White, 1f)
         AsyncImage("file:///android_asset/weatherIcon/sun.svg", White, 1f)
         AsyncImage("file:///android_asset/weatherIcon/sun.svg", White, 1f)
-        if (typeOfScreen != "Small") topBarTime()
+        if (typeOfScreen != DisplaySize.Compact) topBarTime()
 
     }
 

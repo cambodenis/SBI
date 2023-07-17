@@ -1,32 +1,29 @@
 package com.example.sbi.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DeviceDatabaseDao {
     @Query("SELECT * from device_list")
-    fun getAll(): LiveData<List<DeviceItem>>
+    fun getAll(): Flow<List<DeviceItem>>
 
     @Query("SELECT * FROM device_list WHERE device_type = :deviceType")
-    fun getListDevice(deviceType: String): LiveData<List<DeviceItem>>
+    fun getListDevice(deviceType: String): Flow<List<DeviceItem>>
 
     @Query("SELECT * FROM device_list WHERE deviceTopBar = :deviceTopBar")
-    fun getTopBarIcon(deviceTopBar: Boolean): LiveData<List<DeviceItem>>
+    fun getTopBarIcon(deviceTopBar: Boolean): Flow<List<DeviceItem>>
 
 
     @Query("SELECT * FROM device_list WHERE deviceId = :id")
-    fun getDeviceById(id: Int): LiveData<List<DeviceItem>>
+    fun getDeviceById(id: Int): Flow<List<DeviceItem>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: DeviceItem)
-
-    @Update
-    suspend fun update(item: DeviceItem)
 
     @Delete
     suspend fun delete(item: DeviceItem)

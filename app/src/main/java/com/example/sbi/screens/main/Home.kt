@@ -1,6 +1,5 @@
 package com.example.sbi.screens.main
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -8,18 +7,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.sbi.ui.theme.White
 import com.example.sbi.utils.AsyncImage
-import com.example.sbi.utils.TopBarFontStyle
-import com.example.sbi.utils.typeOfScreen
 
 
 @Composable
@@ -35,33 +28,7 @@ fun Home_Screen(navController: NavHostController) {
             //Central
 
             AsyncImage("file:///android_asset/weatherIcon/sun.svg", White, 1f)
-            when (typeOfScreen) {
-                "Small" -> {
-                    Text(
-                        text = typeOfScreen, textAlign = TextAlign.Center,
-                        color = White, style = TopBarFontStyle
-                    )
-                }
 
-                "Medium" -> {
-                    Text(
-                        text = typeOfScreen, textAlign = TextAlign.Center,
-                        color = White, style = TopBarFontStyle
-                    )
-                }
-
-                "Large" -> {
-                    Text(
-                        modifier = Modifier.border(1.dp, White),
-                        text = typeOfScreen,
-                        textAlign = TextAlign.Center,
-                        color = White,
-                        style = TopBarFontStyle,
-                        fontSize = 300.sp,
-                        lineHeight = 150.sp
-                    )
-                }
-            }
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier

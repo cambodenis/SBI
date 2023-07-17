@@ -1,6 +1,7 @@
 package com.example.sbi.screens.settings
 
 import android.app.Application
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,18 +41,18 @@ import coil.request.ImageRequest
 import com.example.sbi.database.DeviceItem
 import com.example.sbi.database.DeviceViewModel
 import com.example.sbi.database.DeviceViewModelFactory
-import com.example.sbi.navigation.SettingsDevice
-import com.example.sbi.navigation.navigateToDevice
+import com.example.sbi.navigation.navigateToMain
+import com.example.sbi.ui.theme.BackgroundColor
 import com.example.sbi.ui.theme.White
-import com.example.sbi.utils.TopBarFontStyle
 
 
 @Composable
-fun Settings_Devices(navController: NavHostController) {
+fun Settings_Devices(navController: NavHostController ) {
     val context = LocalContext.current
     val mDeviceViewModel: DeviceViewModel =
         viewModel(factory = DeviceViewModelFactory(context.applicationContext as Application))
-    val devices = mDeviceViewModel.readAllData.observeAsState(listOf()).value
+    val devices = mDeviceViewModel.readAllData.collectAsState(listOf()).value
+
 
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
@@ -59,24 +60,14 @@ fun Settings_Devices(navController: NavHostController) {
             .fillMaxSize()
 
     ) {
-
-        Text(
-            modifier = Modifier.border(1.dp, White),
-            text = devices.toString(),
-            textAlign = TextAlign.Center,
-            color = White,
-            style = TopBarFontStyle,
-            fontSize = 30.sp,
-
-        )
         Scaffold(
             floatingActionButton = {
             FloatingActionButton(modifier = Modifier.border(
                 width = 1.dp,
                 color = White,
-                shape = RoundedCornerShape(10.dp)
-            ), onClick = {
-                navController.navigateToDevice(SettingsDevice,"-1")
+                shape = RoundedCornerShape(10.dp),
+            ).background(color = BackgroundColor), containerColor = Color.Transparent, onClick = {
+                navController.navigateToMain("SettingsDevice")
             }) {
                 Icon(
                     imageVector = Icons.Rounded.Add,
@@ -115,6 +106,7 @@ fun DeviceList(
         maxItemsInEachRow = 6,
     ) {
         deviceList.forEach { deviceItem ->
+            val deviceId = 5
             Box(
                 contentAlignment = Alignment.TopCenter,
                 modifier = Modifier
@@ -122,7 +114,7 @@ fun DeviceList(
                     .width(200.dp)
                     .border(width = 1.dp, color = White)
                     .clickable {
-                        navController.navigate(SettingsDevice.route+"/1")
+                        navController.navigate("SettingsDevice?deviceId=${deviceItem.deviceId}")
 /*
                         navController.navigate(
                             SettingsScreens.Device.routeWithArgs(

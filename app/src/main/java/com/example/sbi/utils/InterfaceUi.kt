@@ -22,7 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sbi.SBI.Companion.windowWidth
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.sbi.screens.settings.SettingViewModel
 import com.example.sbi.ui.theme.White
 
 
@@ -38,6 +39,9 @@ fun card(
     deviceIcon: String,
     deviceType: Int
 ) {
+    val settingViewModel: SettingViewModel = viewModel()
+//    val deviceItem by settingViewModel.uiState.collectAsState()
+
     Column(
         modifier = Modifier.border(
             width = 0.5.dp,
@@ -57,7 +61,7 @@ fun card(
             color = White,
             fontSize = 30.sp,
         )
-        AsyncImage( deviceIcon, deviceColorIcon, 0.8f)
+        AsyncImage( settingViewModel.uiState.deviceIcon, deviceColorIcon, 0.8f)
         Text(
             text = "$deviceData $deviceDataUnits",
             textAlign = TextAlign.Center,

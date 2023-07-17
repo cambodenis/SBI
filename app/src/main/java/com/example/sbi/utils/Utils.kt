@@ -19,6 +19,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.sbi.R
+import com.example.sbi.ui.theme.White
 import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -96,13 +97,13 @@ fun deviceTypeGroup(): List<String> {
 
 
 @Composable
-fun AsyncImage(file: String, color: Color, size: Float) {
+fun AsyncImage(file: String, color: Color = White, size: Float = 1f) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(file)
             .decoderFactory(SvgDecoder.Factory()).build(),
         contentDescription = null,
-        modifier = Modifier.fillMaxHeight(1f),
+        modifier = Modifier.fillMaxHeight(size),
         colorFilter = ColorFilter.tint(color),
         contentScale = ContentScale.Fit
     )
