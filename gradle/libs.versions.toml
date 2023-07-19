@@ -48,7 +48,7 @@ androidx-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.re
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle-viewmodel-compose" }
 
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidApplication = { id = "com.android.application", version = "8.0.2" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 

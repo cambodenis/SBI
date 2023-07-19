@@ -11,7 +11,6 @@ var orientationOfScreen = DisplayOrientation.Landscape.name
 var windowWidth = 0.dp
 var windowHeight = 0.dp
 
-
 //Top Bar Setting
 var TopBarHeight = 0.dp
 var TopBarFontStyle = TextStyle()
@@ -23,6 +22,8 @@ var SettingMenuFontStyle = TextStyle()
 //Bottom Menu Setting
 var MenuHeight = 0.dp
 var MenuItemWidth = 0.dp
+
+var mainWindowsHeight= windowHeight
 
 @Composable
 fun getDeviceType(maxWidth: Dp, maxHeight: Dp, orientation: Int) {

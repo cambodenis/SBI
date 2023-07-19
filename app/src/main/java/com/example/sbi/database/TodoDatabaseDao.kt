@@ -19,8 +19,8 @@ interface DeviceDatabaseDao {
     fun getTopBarIcon(deviceTopBar: Boolean): Flow<List<DeviceItem>>
 
 
-    @Query("SELECT * FROM device_list WHERE deviceId = :id")
-    fun getDeviceById(id: Int): Flow<List<DeviceItem>>
+    @Query("SELECT * FROM device_list WHERE deviceId == :id")
+    suspend fun getDeviceById(id: Int): DeviceItem
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: DeviceItem)

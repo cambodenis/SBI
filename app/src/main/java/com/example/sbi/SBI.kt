@@ -76,6 +76,13 @@ class SBI : ComponentActivity() {
                     //Deleted before build
                     BoxWithConstraints() {
                         //Start Save global variable Windows sizes
+                        Log.i("Phone maxWidth", this.maxWidth.toString())
+                        Log.i("Phone maxHeight", this.maxHeight.toString())
+
+                        Log.i("Phone constraints", this.constraints.toString())
+
+                        Log.i("Phone screenHeightDp", LocalConfiguration.current.screenHeightDp.toString())
+
                         getDeviceType(this.maxWidth,this.maxHeight, LocalConfiguration.current.orientation)
                         //End Save global variable Windows sizes
 

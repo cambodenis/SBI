@@ -12,8 +12,9 @@ class DeviceRepository(private val deviceDatabaseDao: DeviceDatabaseDao) {
     fun getTopBarIcon(deviceTopBarIcon: Boolean): Flow<List<DeviceItem>> =
         deviceDatabaseDao.getTopBarIcon(deviceTopBarIcon)
 
-    fun getDeviceById(id: Int): Flow<List<DeviceItem>> = deviceDatabaseDao.getDeviceById(id)
-
+    suspend fun getDeviceById(id: Int): DeviceItem{
+        return deviceDatabaseDao.getDeviceById(id)
+    }
     suspend fun insert(deviceItem: DeviceItem) {
         deviceDatabaseDao.insert(deviceItem)
     }

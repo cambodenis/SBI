@@ -23,9 +23,10 @@ val Blue = Color(0xFF039BE5)
 val Green = Color(0xFF02AA13)
 
 val userColors = listOf(
+    Color(0xFFFFFF),
     Color(0xFFFFFFFF),
-    Color(0xFF03A9F4),
-    Color(0xFF2196F3),
+    Color(0xFF2F95F3),
+    Color(0xFF0462AD),
     Color(0xFF009688),
     Color(0xFF4CAF50),
     Color(0xFFCDDC39),
@@ -36,7 +37,8 @@ val userColors = listOf(
     Color(0xFFFC6B21),
     Color(0xFFFC2121),
     Color(0xFF02AA13),
-    Color(0xFF39393A)
+    Color(0xFF39393A),
+
 
 )
 

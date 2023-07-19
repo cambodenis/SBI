@@ -42,19 +42,55 @@ import com.example.sbi.ui.theme.White
 @Composable
 fun ColorPicker(
     colors: List<Color?>,
-    selectedColor: Color?,
-    onColorSelected: (color: Color?) -> Unit,
+    iconColor: Color?,
+    selectedIconColor: (color: Color?) -> Unit,
+    deviceColorIndicator: Color?,
+    selectedDeviceColorIndicator: (color: Color?) -> Unit,
+    deviceColorAlarm: Color?,
+    selectedDeviceColorAlarm: (color: Color?) -> Unit,
     onDismissRequest: () -> Unit, // Cancel Request
     modifier: Modifier = Modifier
-) {
-    Column(modifier = Modifier.fillMaxWidth(0.5f).fillMaxHeight().border(1.dp, White).background(BackgroundColor).padding(20.dp)) {
+)
+{
+    Column(modifier = modifier
+        .fillMaxWidth(0.5f)
+        .fillMaxHeight(0.8f)
+        .border(1.dp, White)
+        .background(BackgroundColor)
+        .padding(20.dp)) {
+  Text(text = stringResource(R.string.icon_color))
+            FlowRow(
+            ) {
+                colors.distinct().forEach { color ->
+                    ColorItem(
+                        selected = color == iconColor,
+                        color = color,
+                        onClick = { selectedIconColor(color) }
+                    )
+                }
+            }
+
+
+
+        Text(text = stringResource(R.string.icon_indicator_color))
         FlowRow(
         ) {
             colors.distinct().forEach { color ->
                 ColorItem(
-                    selected = color == selectedColor,
+                    selected = color == deviceColorIndicator,
                     color = color,
-                    onClick = { onColorSelected(color) }
+                    onClick = { selectedDeviceColorIndicator(color) }
+                )
+            }
+        }
+        Text(text = stringResource(R.string.alarm_color))
+        FlowRow(
+        ) {
+            colors.distinct().forEach { color ->
+                ColorItem(
+                    selected = color == deviceColorAlarm,
+                    color = color,
+                    onClick = { selectedDeviceColorAlarm(color) }
                 )
             }
         }

@@ -12,10 +12,10 @@ data class DeviceItem(
     var deviceId: Int?,
 
     @ColumnInfo(name = "device_gate_address")
-    var deviceGateAddress: Int,
+    var deviceGateAddress: Short,
 
     @ColumnInfo(name = "device_address")
-    var deviceAddress: Int,
+    var deviceAddress: Short,
 
     @ColumnInfo(name = "device_name")
     var deviceName: String,
@@ -48,6 +48,9 @@ data class DeviceItem(
 
     @ColumnInfo(name = "device_icon")
     var deviceIcon: String,
+
+    @ColumnInfo(name = "device_state")
+    var deviceState: Boolean,
 
     @ColumnInfo(name = "deviceTopBar")
     var deviceTopBar: Boolean

@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -25,8 +27,12 @@ class DeviceViewModel(application: Application) : AndroidViewModel(application) 
         return repository.getListDevice(deviceType)
     }
 
-    fun getDeviceById(id: Int): Flow<List<DeviceItem>> {
-        return repository.getDeviceById(id)
+    suspend fun getDeviceById(id: Int): DeviceItem {
+        val deferred: Deferred<DeviceItem> = viewModelScope.async {
+            repository.getDeviceById(id)
+        }
+        return deferred.await()
+
     }
 
     fun getDeviceTopBarIcon(topBar: Boolean): Flow<List<DeviceItem>> {

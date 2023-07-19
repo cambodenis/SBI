@@ -25,7 +25,7 @@
     <string name="choice_icon">Choice icon</string>
     <string name="add_your_icon">Add your icon</string>
     <string name="preview">Preview</string>
-    <string name="device_units">Device Units</string>
+    <string name="device_units">Units</string>
     <string name="delete_device">Delete</string>
     <string name="add_to_topbar">Add to TopBar</string>
     <string name="menu_settings">Settings</string>
@@ -35,4 +35,8 @@
     <string name="menu_utilites">Utilites</string>
     <string name="menu_light">Light</string>
     <string name="menu_run">Run</string>
+    <string name="choice_icon_color">Choice colors</string>
+    <string name="icon_color">Icon Color</string>
+    <string name="icon_indicator_color">Indicator color</string>
+    <string name="alarm_color">Alarm color</string>
 </resources>

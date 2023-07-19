@@ -25,7 +25,7 @@
     <string name="choice_icon">Выбрать иконку</string>
     <string name="add_your_icon">Добавить свою иконку</string>
     <string name="preview">Предпросмотр</string>
-    <string name="device_units">Единица измерения</string>
+    <string name="device_units">Eд.изм.</string>
     <string name="delete_device">Удалить</string>
     <string name="add_to_topbar">Добавить на верхную панель</string>
     <string name="menu_settings">Настройки</string>
@@ -35,4 +35,8 @@
     <string name="menu_utilites">Оснащение</string>
     <string name="menu_light">Освещение</string>
     <string name="menu_run">Управление</string>
+    <string name="choice_icon_color">Выбрать цвета</string>
+    <string name="icon_color">Цвет иконки</string>
+    <string name="icon_indicator_color">Цвет индикатора</string>
+    <string name="alarm_color">Цвет тревоги</string>
 </resources>
